@@ -378,6 +378,9 @@ Init_rpatricia (void)
   rb_define_private_method(cPatricia, "initialize", p_init, -1);
   rb_define_method(cPatricia, "initialize_copy", p_init_copy, 1);
 
+  /* Undefine the allocator for Patricia to prevent warnings */
+  rb_undef_alloc_func(cPatricia);
+
   /*---------- methods to tree ----------*/
   /* add string */
   rb_define_method(cPatricia, "add", p_add, -1);

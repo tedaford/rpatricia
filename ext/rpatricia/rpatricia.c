@@ -379,7 +379,7 @@ Init_rpatricia (void)
   rb_define_method(cPatricia, "initialize_copy", p_init_copy, 1);
 
   /* Undefine the allocator for Patricia to prevent warnings */
-  rb_undef_alloc_func(cPatricia);
+  rb_undef_alloc_func(cNode);
 
   /*---------- methods to tree ----------*/
   /* add string */

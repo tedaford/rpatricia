@@ -70,7 +70,7 @@ p_add (int argc, VALUE *argv, VALUE self)
   prefix_t prefix;
 
   if (argc > 2 || argc < 1) 
-    return Qnil;
+    return ((void*)0);
 
   Data_Get_Struct(self, patricia_tree_t, tree);
   my_ascii2prefix(tree, argv[0], &prefix);
@@ -121,7 +121,7 @@ p_match (VALUE self, VALUE r_key)
   my_ascii2prefix(tree, r_key, &prefix);
   node = patricia_search_best(tree, &prefix);
 
-  return node ? wrap_node(node) : Qnil;
+  return node ? wrap_node(node) : ((void*)0);
 }
 
 static VALUE
@@ -149,7 +149,7 @@ p_match_exact (VALUE self, VALUE r_key)
   my_ascii2prefix(tree, r_key, &prefix);
   node = patricia_search_exact(tree, &prefix);
 
-  return node ? wrap_node(node) : Qnil;
+  return node ? wrap_node(node) : ((void*)0);
 }
 
 static VALUE
@@ -214,7 +214,7 @@ p_each(VALUE self)
       rb_yield(wrap_node(node));
     } PATRICIA_WALK_END;
   } else {
-    return Qnil;
+    return ((void*)0);
   }
 }
 
@@ -361,7 +361,7 @@ p_family(VALUE self)
   case 128: return sym_AF_INET6;
   }
   assert(0 && "unknown maxbits, corrupt tree");
-  return Qnil;
+  return ((void*)0);
 }
 
 void

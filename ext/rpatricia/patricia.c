@@ -126,11 +126,11 @@ New_Prefix2 (int family, void *dest, int bitlen, prefix_t *prefix)
 	size = sizeof(prefix4_t);
 	break;
     default:
-        return Qnil;
+        return NULL;
     }
     default_bitlen = addr_size * CHAR_BIT;
     if (bitlen > default_bitlen)
-	return Qnil;
+	return NULL;
     if (!orig_prefix)
 	prefix = calloc(1, size);
     prefix->bitlen = bitlen >= 0 ? bitlen : default_bitlen;

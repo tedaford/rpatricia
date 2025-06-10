@@ -3,8 +3,8 @@
  *   Tatsuya Mori <mori.tatsuya@gmail.com>
  */
 
-#include "ruby.h"
 #include <stdlib.h>
+#include "ruby.h"
 #include "patricia.h"
 #include <assert.h>
 

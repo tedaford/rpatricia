@@ -16,13 +16,12 @@ static char copyright[] =
 "This product includes software developed by the University of Michigan, Merit"
 "Network, Inc., and their contributors.";
 
+#include <stdlib.h>
 #include <assert.h> /* assert */
 #include <ctype.h> /* isdigit */
 #include <errno.h> /* errno */
 #include <math.h> /* sin */
-#include <stddef.h> /* NULL */
 #include <stdio.h> /* sprintf, fprintf, stderr */
-#include <stdlib.h> /* free, atol, calloc */
 #include <string.h> /* memcpy, strchr, strlen */
 #include <sys/types.h> /* BSD: for inet_addr */
 #include <sys/socket.h> /* BSD, Linux: for inet_addr */
@@ -171,7 +170,7 @@ ascii2prefix(char *string, prefix_t *prefix)
     if (slash) {
 	bitlen = strtol(slash + 1, &end, 10);
 	if (*end || (bitlen < 0) || ((slash - string) >= (int)sizeof(save)))
-	    return Qnil;
+	    return NULL;
 
 	/* copy the string to save. Avoid destroying the string */
 	memcpy(save, string, slash - string);
@@ -184,7 +183,7 @@ ascii2prefix(char *string, prefix_t *prefix)
     family = memchr(string, ':', len) ? AF_INET6 : AF_INET;
     result = inet_pton(family, string, &addr);
     if (result != 1)
-	return Qnil;
+	return NULL;
 
     return New_Prefix2(family, &addr, bitlen, prefix);
 }

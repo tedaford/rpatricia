@@ -12,6 +12,7 @@
  * some other things it could be used as a standalone API.
  */
 
+#include <stdlib.h>
 #ifndef _PATRICIA_H
 #define _PATRICIA_H
 

@@ -126,11 +126,11 @@ New_Prefix2 (int family, void *dest, int bitlen, prefix_t *prefix)
 	size = sizeof(prefix4_t);
 	break;
     default:
-        return ((void*)0);
+        return Qnil;
     }
     default_bitlen = addr_size * CHAR_BIT;
     if (bitlen > default_bitlen)
-	return ((void*)0);
+	return Qnil;
     if (!orig_prefix)
 	prefix = calloc(1, size);
     prefix->bitlen = bitlen >= 0 ? bitlen : default_bitlen;
@@ -171,7 +171,7 @@ ascii2prefix(char *string, prefix_t *prefix)
     if (slash) {
 	bitlen = strtol(slash + 1, &end, 10);
 	if (*end || (bitlen < 0) || ((slash - string) >= (int)sizeof(save)))
-	    return ((void*)0);
+	    return Qnil;
 
 	/* copy the string to save. Avoid destroying the string */
 	memcpy(save, string, slash - string);
@@ -184,7 +184,7 @@ ascii2prefix(char *string, prefix_t *prefix)
     family = memchr(string, ':', len) ? AF_INET6 : AF_INET;
     result = inet_pton(family, string, &addr);
     if (result != 1)
-	return ((void*)0);
+	return Qnil;
 
     return New_Prefix2(family, &addr, bitlen, prefix);
 }
